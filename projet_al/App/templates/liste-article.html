@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <a href="{% url 'ajout_article' %}">
+       <button class="btn btn-primary "><i class="far fa-plus-square"></i> Ajouter un article</button>
+    </a>
+    {% if articles == None %}
+    <h2>aucun article pour le monent</h2>
+    {% else %}
+        {% for article in articles %}
+            <h1>{{article.titre}}</h1>
+            <p>{{article.description}}</p>
+            <p>{{article.categorie}}</p>
+            <span>{{article.date}}</span>
+        {% endfor%}
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
