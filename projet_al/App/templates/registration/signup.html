@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{{form.username}}
+{{form.password1}}
+{{form.password2}}
+
   <div class="row justify-content-center">
     <div class="col-8">
       <div class="card">
@@ -9,9 +13,12 @@
           
           <form method="post">
             {% csrf_token %}
+            {{form}}
+             <button type="submit" class="btn btn-outline-primary">Sign up</button>
+          </form>
             <div class="form-row mt-5 mb-3">
               <div class="col">
-                <input type="text" class="form-control" placeholder="First name">
+                <input type="text" class="form-control" placeholder="Username">
               </div>
               <div class="col">
                 <input type="text" class="form-control" placeholder="Last name">
@@ -27,8 +34,7 @@
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-primary">Sign up</button>
-          </form>
+
         <a href="{% url 'login' %}">Vous avez déjà un compte? Connectez vous</a>
         </div>
       </div>

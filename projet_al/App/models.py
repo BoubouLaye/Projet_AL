@@ -7,9 +7,11 @@ class Article(models.Model):
     description = models.CharField(max_length=300)
     date = models.DateTimeField(default=timezone.now, blank=True)
     cat_choises = (
-        ('Sport', 'Sport'),
-        ('sante', 'Santé'),
-        ('Politique', 'Politique'),
+        ('sport', 'sport'),
+        ('sante', 'santé'),
+        ('politique', 'politique'),
 
     )
     categorie = models.CharField(max_length=30, choices=cat_choises)
+
+
