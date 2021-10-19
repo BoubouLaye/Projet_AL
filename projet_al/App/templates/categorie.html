@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">ceci est le contenu de la page d'acceuil</div>
+
+  {{ cat }}
+    {% for article in liste_articles %}
+        {{ article.titre}}
+    {% endfor %}
+{% endblock %}

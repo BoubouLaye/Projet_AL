@@ -4,10 +4,30 @@ from django.contrib.auth import login, authenticate  # add this
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
     return render(request, 'home.html')
+
+
+def download(request):
+    queryset = Article.objects.all()
+    context = {
+        'articles': queryset
+    }
+
+    return render(request, 'download.html', context)
+
+
+"""def categorie_view(request, cat):
+    try:
+        liste_articles = Article.objects.filter(categorie=cat)
+        print("liste articles", liste_articles)
+        context = {'cat': cat, 'liste_articles': liste_articles}
+    except:
+        pass 
+    return render(request, 'categorie.html',context)"""
 
 
 def liste_articles(request):
@@ -18,7 +38,7 @@ def liste_articles(request):
 
     return render(request, 'liste-article.html', context)
 
-
+@login_required(login_url='login')
 def ajout_article(request):
     form = ArticleModelForm()
     if request.method == 'POST':
@@ -37,7 +57,7 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserCreationForm()
     context = {'form': form}
