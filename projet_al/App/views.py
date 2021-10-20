@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'home.html')
+    last = Article.objects.all().order_by('-date')[:5]
+    context = {
+        'articles': last
+    }
+    return render(request, 'home.html', context)
 
 
 def download(request):
