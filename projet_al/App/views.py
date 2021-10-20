@@ -55,6 +55,19 @@ def delete_article(request,pk):
     article.delete()
     return redirect(liste_articles)
 
+@login_required(login_url='login1')
+def edit_article(request,pk):
+    article = Article.objects.get(id=pk)
+    form = ArticleModelForm(instance=article)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = ArticleModelForm(request.POST,instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect(liste_articles)
+
+    return render(request, 'update-article.html', context=context)
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
