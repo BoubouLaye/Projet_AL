@@ -20,14 +20,12 @@ def download(request):
     return render(request, 'download.html', context)
 
 
-"""def categorie_view(request, cat):
-    try:
-        liste_articles = Article.objects.filter(categorie=cat)
-        print("liste articles", liste_articles)
-        context = {'cat': cat, 'liste_articles': liste_articles}
-    except:
-        pass 
-    return render(request, 'categorie.html',context)"""
+def categorie_view(request, cat):
+
+    liste_article = Article.objects.filter(categorie="politique")
+    print("liste articles", cat)
+    context = {'cat': cat, 'liste_articles': liste_article}
+    return render(request, 'categorie.html', context)
 
 
 def liste_articles(request):
@@ -51,6 +49,24 @@ def ajout_article(request):
     context = {'form': form}
     return render(request, 'ajout-article.html', context)
 
+@login_required(login_url='login')
+def delete_article(request,pk):
+    article = Article.objects.get(id=pk)
+    article.delete()
+    return redirect(liste_articles)
+
+@login_required(login_url='login1')
+def edit_article(request,pk):
+    article = Article.objects.get(id=pk)
+    form = ArticleModelForm(instance=article)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = ArticleModelForm(request.POST,instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect(liste_articles)
+
+    return render(request, 'update-article.html', context=context)
 
 def signup(request):
     if request.method == 'POST':
