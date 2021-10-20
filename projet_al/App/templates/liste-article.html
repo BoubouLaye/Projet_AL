@@ -9,8 +9,6 @@
      </a>
     </div>
 </div>
-
-<div class="container">
     {% if articles == None %}
     <h2>aucun article pour le monent</h2>
     {% else %}
@@ -36,8 +34,6 @@
 </div>
     {% endif %}
 
-
-</div>
 <style>
     * {
       margin: 0;
@@ -93,11 +89,9 @@
     background-color: white;
     font-size: 20px;
 }
-  
   .articles{
       display:flex;
-      justify-content: space-between;
-      margin: 2%;
+      justify-content: flex-start;
       line-height: 0px;
       flex-wrap: wrap;
   }
@@ -105,7 +99,7 @@
   .article{
       background-color: rgb(44, 44, 44);
       display: flex;
-      flex-basis:505px;
+      flex-basis:345px;
       flex-direction: column;
       justify-content: space-between;
       color: #d6dce6;
@@ -153,5 +147,7 @@
       background-color:white;
       border: 1px solid 482ff7;
   }
+
+  
   </style>
 {% endblock %}
