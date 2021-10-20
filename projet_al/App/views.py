@@ -51,6 +51,14 @@ def liste_articles(request):
 
     return render(request, 'liste-article.html', context)
 
+def detail_article(request,pk):
+    article = Article.objects.get(id=pk)
+    context = {
+        'article': article
+    }
+
+    return render(request, 'detail-article.html', context)
+
 @login_required(login_url='login')
 def ajout_article(request):
     form = ArticleModelForm()

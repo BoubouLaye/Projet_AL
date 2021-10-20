@@ -17,6 +17,7 @@ urlpatterns = [
     path('articles/telechargement', download, name='download'),
     path('articles/ajout', ajout_article, name='ajout_article'),
     path('articles/delete/<int:pk>', delete_article, name='delete_article'),
+    path('articles/detail/<int:pk>', detail_article, name='detail'),
     path('articles/edit/<int:pk>', edit_article, name='edit_article'),
     path('accounts/', include('django.contrib.auth.urls')),
 
