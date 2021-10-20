@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">ceci est le contenu de la page d'acceuil</div>
+    <div class="container">ceci est le contenu de {{ cat }}</div>
 
-  {{ cat }}
+
     {% for article in liste_articles %}
         {{ article.titre}}
     {% endfor %}

@@ -24,12 +24,23 @@ def download(request):
     return render(request, 'download.html', context)
 
 
-def categorie_view(request, cat):
+def categorie_sante(request):
+
+    liste_article = Article.objects.filter(categorie="sante")
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sante.html', context)
+
+def categorie_sport(request):
+
+    liste_article = Article.objects.filter(categorie="sport")
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sport.html', context)
+
+def categorie_politique(request):
 
     liste_article = Article.objects.filter(categorie="politique")
-    print("liste articles", cat)
-    context = {'cat': cat, 'liste_articles': liste_article}
-    return render(request, 'categorie.html', context)
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sante.html', context)
 
 
 def liste_articles(request):
@@ -59,7 +70,7 @@ def delete_article(request,pk):
     article.delete()
     return redirect(liste_articles)
 
-@login_required(login_url='login1')
+@login_required(login_url='login')
 def edit_article(request,pk):
     article = Article.objects.get(id=pk)
     form = ArticleModelForm(instance=article)

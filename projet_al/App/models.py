@@ -8,7 +8,7 @@ class Article(models.Model):
     date = models.DateTimeField(default=timezone.now, blank=True)
     cat_choises = (
         ('sport', 'sport'),
-        ('sante', 'santé'),
+        ('sante', 'sante'),
         ('politique', 'politique'),
 
     )
