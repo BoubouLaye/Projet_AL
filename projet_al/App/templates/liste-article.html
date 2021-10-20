@@ -3,14 +3,14 @@
 
 <div class="hero-banner">
     <div class="hero-text">
-        <h1> Liste des articles</h1>
+        <h1>Liste des articles</h1>
+    <a href="{% url 'ajout_article' %}">
+        <button class="btn btn-primary "><i class="far fa-plus-square"></i> Ajouter un article</button>
+     </a>
     </div>
 </div>
 
 <div class="container">
-    <a href="{% url 'ajout_article' %}">
-       <button class="btn btn-primary "><i class="far fa-plus-square"></i> Ajouter un article</button>
-    </a>
     {% if articles == None %}
     <h2>aucun article pour le monent</h2>
     {% else %}
@@ -54,9 +54,10 @@
   
   body{
       background-color: #121212;
+      height: 100%;   
   }
   
-  .hero-banner {
+  .hero-banner{
       background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('static/img/banner.jpg');
       height: 50%;
       background-position: center;
@@ -82,6 +83,16 @@
   a {
       text-decoration: none;
   }
+
+  header{
+    border-bottom: 1px solid #E2E8F0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.5), 
+    0 2px 2px rgba(0,0,0,0.5), 
+    0 4px 4px rgba(0,0,0,0.5), 
+    0 8px 8px rgba(0,0,0,0.5);
+    background-color: white;
+    font-size: 20px;
+}
   
   .articles{
       display:flex;
