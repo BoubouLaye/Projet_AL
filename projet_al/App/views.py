@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate  # add this
+from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'home.html')
+    last = Article.objects.all().order_by('-date')[:5]
+    context = {
+        'articles': last
+    }
+    return render(request, 'home.html', context)
 
 
 def download(request):
@@ -20,14 +24,23 @@ def download(request):
     return render(request, 'download.html', context)
 
 
-"""def categorie_view(request, cat):
-    try:
-        liste_articles = Article.objects.filter(categorie=cat)
-        print("liste articles", liste_articles)
-        context = {'cat': cat, 'liste_articles': liste_articles}
-    except:
-        pass 
-    return render(request, 'categorie.html',context)"""
+def categorie_sante(request):
+
+    liste_article = Article.objects.filter(categorie="sante")
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sante.html', context)
+
+def categorie_sport(request):
+
+    liste_article = Article.objects.filter(categorie="sport")
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sport.html', context)
+
+def categorie_politique(request):
+
+    liste_article = Article.objects.filter(categorie="politique")
+    context = {'liste_articles': liste_article}
+    return render(request, 'categorie-sante.html', context)
 
 
 def liste_articles(request):
@@ -37,6 +50,14 @@ def liste_articles(request):
     }
 
     return render(request, 'liste-article.html', context)
+
+def detail_article(request,pk):
+    article = Article.objects.get(id=pk)
+    context = {
+        'article': article
+    }
+
+    return render(request, 'detail-article.html', context)
 
 @login_required(login_url='login')
 def ajout_article(request):
@@ -51,6 +72,24 @@ def ajout_article(request):
     context = {'form': form}
     return render(request, 'ajout-article.html', context)
 
+@login_required(login_url='login')
+def delete_article(request,pk):
+    article = Article.objects.get(id=pk)
+    article.delete()
+    return redirect(liste_articles)
+
+@login_required(login_url='login')
+def edit_article(request,pk):
+    article = Article.objects.get(id=pk)
+    form = ArticleModelForm(instance=article)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = ArticleModelForm(request.POST,instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect(liste_articles)
+
+    return render(request, 'update-article.html', context=context)
 
 def signup(request):
     if request.method == 'POST':

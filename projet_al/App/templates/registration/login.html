@@ -7,15 +7,15 @@
 		<div class="login-info-box">
 			<h2>Vous avez dejà un compte?</h2>
 			<label id="label-register" for="log-reg-show">Connectez-vous</label>
-		
+
 		</div>
-							
+
 		<div class="register-info-box">
 			<h2>Vous n'avez pas de compte?</h2>
 			<label id="label-login" for="log-login-show">Inscrivez-vous</label>
 			<input type="radio" name="active-log-panel" id="log-login-show">
 		</div>
-							
+
 		<div class="white-panel">
 			<div class="login-show">
 				<h2>CONNEXION</h2>
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 </div>
-    
+
 {% endblock %}
 
 {% block footer %}
@@ -42,7 +42,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <style>
-       
+
 @import url('https://fonts.googleapis.com/css?family=Mukta');
 body{
   font-family: 'Mukta', sans-serif;
@@ -130,7 +130,7 @@ a{
     right:0;
     position:absolute;
     text-align:left;
-    
+
 }
 .right-log{right:50px !important;}
 
@@ -211,14 +211,14 @@ a{
   text-decoration:none;
   color:#2c7715;
 }
-    
-    
-    
+
+
+
 </style>
 
 
 <script type="text/Javascript">
-  
+
  $(document).ready(function(){
     $('.login-info-box').fadeOut();
     $('.login-show').addClass('show-log-panel');
@@ -229,23 +229,23 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
     if($('#log-login-show').is(':checked')) {
         $('.register-info-box').fadeOut(); 
         $('.login-info-box').fadeIn();
-        
+
         $('.white-panel').addClass('right-log');
         $('.register-show').addClass('show-log-panel');
         $('.login-show').removeClass('show-log-panel');
-        
+
     }
     else if($('#log-reg-show').is(':checked')) {
         $('.register-info-box').fadeIn();
         $('.login-info-box').fadeOut();
-        
+
         $('.white-panel').removeClass('right-log');
-        
+
         $('.login-show').addClass('show-log-panel');
         $('.register-show').removeClass('show-log-panel');
     }
 });
-  
+
 
 </script>
 
@@ -253,5 +253,3 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
 
 
 {% endblock %}
-
-

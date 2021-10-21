@@ -1,21 +1,153 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+
+<div class="hero-banner">
+    <div class="hero-text">
+        <h1>Liste des articles</h1>
     <a href="{% url 'ajout_article' %}">
-       <button class="btn btn-primary "><i class="far fa-plus-square"></i> Ajouter un article</button>
-    </a>
+        <button class="btn btn-primary "><i class="far fa-plus-square"></i> Ajouter un article</button>
+     </a>
+    </div>
+</div>
     {% if articles == None %}
     <h2>aucun article pour le monent</h2>
     {% else %}
+    <div class="articles">
         {% for article in articles %}
-            <h1>{{article.titre}}</h1>
+        
+    <div class="article">
+            <h2>{{article.titre}}</h2>
             <p>{{article.description}}</p>
             <p>{{article.categorie}}</p>
             <span>{{article.date}}</span>
+        <div class="action_buttons">
+    <a href="articles/edit/{{ article.id}}">
+        modifier
+    </a>
+    <a href="articles/delete/{{ article.id}}" >
+        <i class="far fa-trash-alt fa-lg text-danger"></i>
+    </a>
+    </div>
+</div>
         {% endfor%}
+        
+</div>
     {% endif %}
 
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  html {
+      font-family: 'montserrat', sans-serif;
+      font-weight : bold;
+      height: 100%;   
+  }
+  
+  body{
+      font-size: 62.5%;
+      background-color: #121212;
+      height: 100%;   
+  }
+  
+  .hero-banner{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('static/img/banner.jpg');
+      height: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  
+    .hero-text {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 30px;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+  
+  li {
+      list-style: none;
+  }
+  
+  a {
+      text-decoration: none;
+  }
 
-</div>
+  header{
+    border-bottom: 1px solid #E2E8F0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.5), 
+    0 2px 2px rgba(0,0,0,0.5), 
+    0 4px 4px rgba(0,0,0,0.5), 
+    0 8px 8px rgba(0,0,0,0.5);
+    background-color: white;
+    font-size: 20px;
+}
+  .articles{
+      display:flex;
+      justify-content: flex-start;
+      line-height: 0px;
+      flex-wrap: wrap;
+  }
+  
+  .article{
+      background-color: rgb(44, 44, 44);
+      display: flex;
+      flex-basis:345px;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #d6dce6;
+      padding: 2%;
+      margin: 0.5%;
+      Border-radius: 15px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+      0 2px 2px rgba(0,0,0,0.1), 
+      0 4px 4px rgba(0,0,0,0.1), 
+      0 8px 8px rgba(0,0,0,0.1);
+  }
+  
+  .article h2{
+      padding-bottom: 10%;
+      font-size: 25px;
+      color: white;
+  }
+  
+  .article p{
+      padding-bottom: 10%;
+      font-size: 15px;
+      font-weight: 400;
+  }
 
+  .action_buttons{
+    align-self: flex-end;
+  }
+  
+  .action_buttons a{
+      border-radius: 30px;
+      padding: 10px;
+      background-color:#482ff7;
+      align-self: flex-end;
+      margin-left: 10px;
+      color: white;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.15), 
+      0 2px 2px rgba(0,0,0,0.15), 
+      0 4px 4px rgba(0,0,0,0.15), 
+      0 8px 8px rgba(0,0,0,0.15);
+      transition: 0.3s;
+  }
+  
+  .article a:hover{
+      color: black;
+      background-color:white;
+      border: 1px solid 482ff7;
+  }
+
+  
+  </style>
 {% endblock %}
