@@ -40,7 +40,7 @@ def categorie_politique(request):
 
     liste_article = Article.objects.filter(categorie="politique")
     context = {'liste_articles': liste_article}
-    return render(request, 'categorie-sante.html', context)
+    return render(request, 'categorie-politique.html', context)
 
 
 def liste_articles(request):
