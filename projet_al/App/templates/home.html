@@ -9,10 +9,12 @@
 <div class="articles">
 {% for article in articles %}
     <div class="article">
-<h2>{{article.titre}}</h1>
-<p>{{article.description}}</p>
+<h1>{{article.titre}}</h1>
+<p class="h6">{{article.description |truncatewords:"15" }}</p>
 <p>{{article.date}}</p>
-<p>{{article.categorie}}</p>
+<p>{{article.categorie }}</p>
+
+
 <a href="articles/detail/{{article.id}}">Lire plus... </a>
 </div>
 {% endfor %}
